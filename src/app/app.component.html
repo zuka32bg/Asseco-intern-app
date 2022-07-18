@@ -1,0 +1,86 @@
+<link
+  href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+  rel="stylesheet">
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <h3>Telenor Banka</h3>
+
+
+    <button mat-button mat-button (click)="opened= !opened">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-sidenav-container>
+  <mat-sidenav [(opened)]="opened" mode="side">
+    <img class="telenor-logo" src="./assets/telenor-banka-logo.jpg" />
+
+    <mat-list>
+      <mat-list-item>
+        <button mat-button class="menu-button" routerLink="/home" routerLinkActive="mat-accent">
+          <mat-icon>home</mat-icon>
+          <span>HOME</span>
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button class="menu-button">
+          <mat-icon>person</mat-icon>
+          <span>MY ACCOUNTS</span>
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button class="menu-button">
+          <mat-icon>account_balance_wallet</mat-icon>
+          <span>PAYMENTS</span>
+        </button>
+      </mat-list-item>
+
+      <mat-list-item>
+        <button mat-button class="menu-button">
+          <mat-icon>credit_card</mat-icon>
+          <span>CARDS</span>
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button class="menu-button">
+          <mat-icon>compare_arrows</mat-icon>
+          <span>CURRENCY EXCHANGE</span>
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button class="menu-button">
+          <mat-icon>filter</mat-icon>
+          <span>PRODUCT CATALOG</span>
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button class="menu-button" routerLink="/table" routerLinkActive="mat-accent">
+          <mat-icon>insert_chart_outlined</mat-icon>
+          <span>PFM</span>
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button class="menu-button">
+          <mat-icon>settings</mat-icon>
+          <span>SELF CARE</span>
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button mat-button class="menu-button">
+          <mat-icon>help</mat-icon>
+          <span>SUPPORT</span>
+        </button>
+      </mat-list-item>
+
+    </mat-list>
+
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+
+    <div class="content ">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

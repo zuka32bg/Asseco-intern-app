@@ -1,0 +1,32 @@
+mat-toolbar.mat-primary {
+    background: #00ACE7;
+    color: #fff;
+}
+
+mat-sidenav-container {
+    height: calc(205vh - 115vh);
+}
+
+mat-sidenav {
+    width: 200px;
+    background-color: #FFFFFF;
+}
+
+.menu-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: small;
+
+
+
+}
+
+
+
+.telenor-logo {
+    width: 180px;
+    height: 120px;
+
+}
