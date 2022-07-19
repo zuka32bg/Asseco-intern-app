@@ -1,32 +1,49 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<mat-card class="users-card">
+    <mat-card-header>
+        <div class="naslov">
+            <mat-card-title>FINANCIAL OVERVIEW</mat-card-title>
+        </div>
+    </mat-card-header>
+    <mat-card-content>
 
-    <!--- Note that these columns can be defined in any order.
+        <div>
+            <input type="text" class="form-control" [(ngModel)]="filteredString" />
+        </div>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 transactions-table">
+
+            <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
 
-    <!-- Position Column -->
-    <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef> ID. </th>
-        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-    </ng-container>
+            <!-- ID Column -->
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="beneficiaryname">
-        <th mat-header-cell *matHeaderCellDef> Date </th>
-        <td mat-cell *matCellDef="let element"> {{element.date}} </td>
-    </ng-container>
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef> ID. </th>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="beneficiary-name">
+                <th mat-header-cell *matHeaderCellDef> Beneficiary Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.beneficiaryname}} </td>
+            </ng-container>
+            <!-- Date Column -->
+            <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef> Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+            </ng-container>
+            <!-- Direction Column -->
+            <ng-container matColumnDef="direction">
+                <th mat-header-cell *matHeaderCellDef> Direction </th>
+                <td mat-cell *matCellDef="let element"> {{element.direction}} </td>
+            </ng-container>
+            <!-- Amount Column -->
+            <ng-container matColumnDef="amount">
+                <th mat-header-cell *matHeaderCellDef> Amount </th>
+                <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+            </ng-container>
 
-    <!-- Weight Column -->
-    <ng-container matColumnDef="date">
-        <th mat-header-cell *matHeaderCellDef> Date </th>
-        <td mat-cell *matCellDef="let element"> {{element.date}} </td>
-    </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </mat-card-content>
 
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="amount">
-        <th mat-header-cell *matHeaderCellDef> Amount </th>
-        <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+</mat-card>

@@ -8,7 +8,8 @@ import { PfmService } from '../pfm.service';
   styleUrls: ['./pfm.component.scss']
 })
 export class PfmComponent implements OnInit {
-  public displayedColumns: string[] = ['id', 'beneficiaryname', 'date', 'amount'];
+  filteredString: string = '';
+  public displayedColumns: string[] = ['id', 'beneficiary-name', 'date', 'direction', 'amount'];
   public dataSource = new MatTableDataSource();
   public transactions: any = [];
   constructor(
@@ -17,13 +18,18 @@ export class PfmComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTransactions();
+
   }
   private getTransactions() {
     this.transactionService.getTransactions().subscribe((res) => {
       this.transactions = res;
       console.log('this.transactions', this.transactions);
-      this.dataSource.data = this.transactions;
+      this.dataSource.data = this.transactions.items;
 
     })
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
   }
 }

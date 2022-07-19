@@ -17,7 +17,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { PfmComponent } from './pfm/pfm.component';
 import { MatTableModule } from '@angular/material/table'
-import { MatBadgeModule } from '@angular/material/badge'
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatBadgeModule } from '@angular/material/badge';
+
+
 
 
 
@@ -25,7 +28,8 @@ import { MatBadgeModule } from '@angular/material/badge'
   declarations: [
     AppComponent,
     HomeComponent,
-    PfmComponent
+    PfmComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -42,7 +46,10 @@ import { MatBadgeModule } from '@angular/material/badge'
     MatCardModule,
     HttpClientModule,
     MatTableModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatFormFieldModule,
+
+
 
   ],
   providers: [],
