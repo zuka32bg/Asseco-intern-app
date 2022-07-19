@@ -10,17 +10,22 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
-
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
+import { PfmComponent } from './pfm/pfm.component';
+import { MatTableModule } from '@angular/material/table'
+import { MatBadgeModule } from '@angular/material/badge'
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    PfmComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +39,10 @@ import { HomeComponent } from './home/home.component';
     MatDividerModule,
     MatListModule,
     MatGridListModule,
-    MatCardModule
+    MatCardModule,
+    HttpClientModule,
+    MatTableModule,
+    MatBadgeModule
 
   ],
   providers: [],
