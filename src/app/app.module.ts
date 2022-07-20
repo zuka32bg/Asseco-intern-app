@@ -19,6 +19,12 @@ import { PfmComponent } from './pfm/pfm.component';
 import { MatTableModule } from '@angular/material/table'
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatSelectModule } from '@angular/material/select';
+import { MatPaginatorModule } from '@angular/material/paginator'
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatSortModule } from '@angular/material/sort';
 
 
 
@@ -48,6 +54,12 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatTableModule,
     MatBadgeModule,
     MatFormFieldModule,
+    MatChipsModule,
+    MatSelectModule,
+    MatPaginatorModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatSortModule
 
 
 

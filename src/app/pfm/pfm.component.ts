@@ -1,35 +1,80 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { PfmService } from '../pfm.service';
+import { FormControl, Validators } from '@angular/forms';
+import { Pfm } from '../pfm';
+
+
+
+/**
+ * @title Data table with sorting, pagination, and filtering.
+ */
 
 @Component({
   selector: 'app-pfm',
   templateUrl: './pfm.component.html',
   styleUrls: ['./pfm.component.scss']
 })
-export class PfmComponent implements OnInit {
-  filteredString: string = '';
-  public displayedColumns: string[] = ['id', 'beneficiary-name', 'date', 'direction', 'amount'];
-  public dataSource = new MatTableDataSource();
-  public transactions: any = [];
-  constructor(
-    protected transactionService: PfmService
-  ) { }
+
+export class PfmComponent implements AfterViewInit {
+  nizTransakcije: Pfm[] = [];
+  nizSvihTransakcija: Pfm[] = [];
+  nizTransakcijaDrop: Pfm[] = [];
+
+
+
+  displayedColumns: string[] = ['id', 'beneficiaryName', 'date', 'direction', 'amount', 'currency'];
+  selectFormControl = new FormControl('', Validators.required);
+
+  @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
+  @ViewChild(MatSort) sort: MatSort | undefined;
+
+  constructor(private transactionService: PfmService) {
+
+
+
+
+  }
 
   ngOnInit(): void {
-    this.getTransactions();
 
-  }
-  private getTransactions() {
-    this.transactionService.getTransactions().subscribe((res) => {
-      this.transactions = res;
-      console.log('this.transactions', this.transactions);
-      this.dataSource.data = this.transactions.items;
+
+    this.transactionService.getTransactions().subscribe((transakcije: Pfm[]) => {
+      console.log(transakcije);
+      this.nizTransakcijaDrop = transakcije;
+      this.dataSource.data = transakcije;
+      this.nizSvihTransakcija = transakcije;
 
     })
+
+
   }
 
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator!;
+    this.dataSource.sort = this.sort!;
+
   }
+  dataSource = new MatTableDataSource<Pfm>(this.nizSvihTransakcija);
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
+
+
 }
+
+
+
+
+
+
