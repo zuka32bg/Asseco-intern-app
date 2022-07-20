@@ -6,7 +6,7 @@ import { PfmComponent } from './pfm/pfm.component'
 const routes: Routes = [
   { path: "home", component: HomeComponent },
   { path: "pfm", component: PfmComponent },
-  { path: " ", component: HomeComponent },
+  { path: "", component: HomeComponent },
 
 
 ];

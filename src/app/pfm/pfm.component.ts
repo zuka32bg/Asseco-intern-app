@@ -5,6 +5,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { PfmService } from '../pfm.service';
 import { FormControl, Validators } from '@angular/forms';
 import { Pfm } from '../pfm';
+import { filter } from 'rxjs/operators';
+import * as _ from 'lodash';
 
 
 
@@ -25,8 +27,10 @@ export class PfmComponent implements AfterViewInit {
 
 
 
-  displayedColumns: string[] = ['id', 'beneficiaryName', 'date', 'direction', 'amount', 'currency'];
-  selectFormControl = new FormControl('', Validators.required);
+  displayedColumns: string[] = ['id', 'beneficiaryName', 'date', 'direction', 'amount', 'currency', 'description', 'mcc', 'kind', 'catcode'];
+
+
+
 
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
   @ViewChild(MatSort) sort: MatSort | undefined;
@@ -68,7 +72,15 @@ export class PfmComponent implements AfterViewInit {
       this.dataSource.paginator.firstPage();
     }
   }
+  filterKind($event: any) {
 
+    let filteredData = _.filter(this.nizTransakcijaDrop, (item: any) => {
+      return item.kind.toLowerCase() == $event.value.toLowerCase();
+    })
+    this.dataSource = new MatTableDataSource(filteredData);
+    this.dataSource.paginator = this.paginator!;
+    this.dataSource.sort = this.sort!;
+  }
 
 
 }
