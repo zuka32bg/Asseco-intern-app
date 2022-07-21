@@ -25,6 +25,11 @@ import { MatPaginatorModule } from '@angular/material/paginator'
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSortModule } from '@angular/material/sort';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDialogModule } from '@angular/material/dialog';
+import { CategoryComponent } from './category/category.component';
+
+
 
 
 
@@ -35,6 +40,7 @@ import { MatSortModule } from '@angular/material/sort';
     AppComponent,
     HomeComponent,
     PfmComponent,
+    CategoryComponent,
 
   ],
   imports: [
@@ -59,7 +65,11 @@ import { MatSortModule } from '@angular/material/sort';
     MatPaginatorModule,
     MatInputModule,
     ReactiveFormsModule,
-    MatSortModule
+    MatSortModule,
+    MatCheckboxModule,
+    MatDialogModule,
+
+
 
 
 

@@ -47,3 +47,53 @@ export class Pfm {
     }
 }
 
+export class PagedTransaction {
+    public pageSize: number;
+    public page: number;
+    public totalCount: number;
+    public sortBy: string;
+    public sortOrder: string;
+    public items: Pfm[];
+
+    constructor(
+        pageSize: number,
+        page: number,
+        totalCount: number,
+        sortBy: string,
+        sortOrder: string,
+        items: Pfm[]
+    ) {
+        this.pageSize = pageSize;
+        this.page = page;
+
+        this.totalCount = totalCount;
+        this.sortBy = sortBy;
+        this.sortOrder = sortOrder;
+        this.items = items;
+    }
+}
+
+export class Category {
+    public code: string;
+    public parentCode: string;
+    public name: string;
+
+
+    constructor(
+        parentCode: string,
+        code: string,
+        name: string,
+
+
+    ) {
+        this.code = code;
+        this.name = name;
+        this.parentCode = parentCode;
+
+
+
+    }
+}
+
+
+

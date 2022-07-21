@@ -3,12 +3,17 @@ mat-toolbar.mat-primary {
     color: #fff;
 }
 
+.mat-accent {
+    background-color: #95d7ee;
+    color: white;
+}
+
 mat-sidenav-container {
     height: calc(205vh - 115vh);
 }
 
 mat-sidenav {
-    width: 200px;
+    width: 220px;
     background-color: #FFFFFF;
 }
 
@@ -19,7 +24,10 @@ mat-sidenav {
     justify-content: flex-start;
     font-size: small;
 
-
+    mat-icon {
+        margin-right: 18px;
+        color: #00ACE7;
+    }
 
 }
 

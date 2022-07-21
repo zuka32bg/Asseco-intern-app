@@ -1,5 +1,5 @@
-
 import { Pfm } from './pfm';
+import { Category } from './category';
 import { HttpClient, } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -10,14 +10,20 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class PfmService {
+
+
+  dataKategorije!: string;
+
+
   constructor(
-    protected httpClient: HttpClient) {
+    protected httpCli: HttpClient) {
+
 
   }
 
   public getTransactions(): Observable<Pfm[]> {
 
-    return this.httpClient.get<any>('http://127.0.0.1:4010/transactions').pipe(
+    return this.httpCli.get<any>('http://127.0.0.1:4010/transactions').pipe(
       map((response) => {
         return response.items.map((responseJSON: { [x: string]: any; id: any; date: any; direction: any; amount: any; description: any; currency: any; mcc: any; kind: any; category: any; }) => ({
           id: responseJSON.id,
@@ -40,4 +46,32 @@ export class PfmService {
 
 
 
+  public getCategories(): Observable<Category[]> {
+    return this.httpCli.get<Kategorije>('http://127.0.0.1:4010/categories').pipe(
+      map((and: Kategorije) => {
+        return and.items.map(category => ({
+          code: category.code,
+          parentCode: category.parentCode,
+          name: category.name
+        }))
+      })
+    )
+  }
+
+  public addCategory(id: any, data: any) {
+    this.dataKategorije = `{ "catcode" : "${data}" } `
+
+    const url = `http://127.0.0.1:4010/transaction/${id}/categorize`;
+    return this.httpCli.post(url, data);
+  }
+
+
+
+
+
+}
+
+
+interface Kategorije {
+  items: Category[];
 }
