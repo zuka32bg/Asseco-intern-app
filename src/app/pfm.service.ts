@@ -48,11 +48,11 @@ export class PfmService {
 
   public getCategories(): Observable<Category[]> {
     return this.httpCli.get<Kategorije>('http://127.0.0.1:4010/categories').pipe(
-      map((and: Kategorije) => {
-        return and.items.map(category => ({
-          code: category.code,
-          parentCode: category.parentCode,
-          name: category.name
+      map((responseJSON: Kategorije,) => {
+        return responseJSON.items.map((responseJSON: { [x: string]: any; code: any; name: any; }) => ({
+          code: responseJSON.code,
+          parentCode: responseJSON['parent-code'],
+          name: responseJSON.name
         }))
       })
     )

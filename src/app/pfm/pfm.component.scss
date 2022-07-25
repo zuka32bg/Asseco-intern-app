@@ -10,6 +10,21 @@
     border-style: outset
 }
 
+// BOJA ZA CHECK BOX
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-ripple .mat-ripple-element {
+    opacity: 0.03 !important;
+    background-color: #00ACE7 !important;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+    background-color: #00ACE7;
+}
+
+::ng-deep .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+    background-color: darkblue !important;
+}
+
 #strelice {
     background-size: cover;
     height: 20px;
@@ -22,20 +37,11 @@
     //border-style:outset
 }
 
-#filter {
-    padding-bottom: 30px;
-    margin-right: 50px;
-}
-
 #centarForma {
     margin: auto;
     width: 50%;
     margin-top: 10px;
     padding: 10px;
-}
-
-.ceoDiv {
-    width: 85%;
 }
 
 .mat-select-panel {
@@ -48,30 +54,30 @@
 
 table {
     width: 100%;
+    width: 1500px;
     height: 700px;
     ;
 }
 
 #naslov {
-    font-size: 0.4rem;
-    color: rgb(70, 164, 219);
+    font-size: 1rem;
+    color: #00ACE7;
     // background-color: rgb(70, 164, 219);
 
 
 }
 
-
 mat-chip {
     color: white;
-    font-size: 15px;
-    background-color: #00ACE7;
+    font-size: 20px;
+    background-color: #0A8AD2 !important;
     border-top-left-radius: 0px !important;
     border-bottom-left-radius: 0px !important;
 
 }
 
 mat-icon {
-    color: rgba(0, 172, 231, 255);
+    color: #00ACE7;
 }
 
 
@@ -82,7 +88,7 @@ mat-icon {
 #benName {
     margin-top: 10px;
     font-size: 20px;
-    color: #00ACE7;
+    color: rgb(37, 164, 196);
 }
 
 #dateName {
@@ -90,7 +96,7 @@ mat-icon {
     color: rgba(114, 114, 114, 0.527);
 }
 
-#and {
+#c {
     // width: 20%;
     size: 30px;
     margin-top: 20px;
@@ -98,49 +104,53 @@ mat-icon {
 
 }
 
-#categ {
+#btnKategorizuj {
     //  width: 5%;
+    margin-top: 11px;
+    margin-left: 260px;
+    background-color: #00ACE7;
+    color: #fff;
+
+}
+
+#categ {
+
     margin-top: 11px;
     background-color: gray !important;
 
 }
 
-#categ1 {
+#category {
     margin-top: 11px;
 }
 
 #balans {
     // width: 15%;
     color: #00ACE7;
-    font-size: 30px;
+    ;
+    font-size: 15px;
 }
 
 #btnSplit {
     font-size: 15px;
+    background-color: #00ACE7;
+    color: #fff;
+    border-radius: 12px;
 }
 
-#ctz {
-    border-radius: 3px;
-    margin-bottom: 10px;
-    white-space: nowrap;
 
-}
 
 #vel {
     font-size: 16px;
 }
 
-#desniSideIcons {
-    background-color: #00ace7;
-    border-radius: 12%;
-}
 
 
 
 .mat-form-field {
-    width: 140px !important;
+    width: 240px !important;
     height: 20px !important;
-    border-style: double;
+
 }
 
 .mat-select {
@@ -148,21 +158,4 @@ mat-icon {
     height: 20px !important;
     width: 140px !important;
 
-}
-
-.example-container {
-    width: 250px;
-    height: 820px;
-    background-color: #ecece4;
-
-
-}
-
-
-
-mat-drawer-content {
-    padding: 12px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
 }

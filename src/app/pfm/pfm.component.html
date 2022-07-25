@@ -1,221 +1,200 @@
 <div>
-
-    <div>
-
+    <mat-form-field style="padding-left: 60px;">
         <mat-label>
-            Filter
+            Filter by Typing...
         </mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Id/Beneficiary Name/Date/Amount" #input>
-    </div>
-    <div class="leviDiv" style="float:right ;">
-
-        <mat-drawer-container class="example-container">
-
-            <mat-drawer-content>
-                <mat-list-item id="desniSideIcons">
-                    <button mat-button class="menu-button" style=" background-color: #95d7ee;">
-                        <mat-icon>signal_cellular_alt</mat-icon>
-                        <span> Financial Overview</span>
-                    </button>
-                </mat-list-item>
-                <br>
-                <mat-list-item>
-                    <button mat-button class="menu-button">
-                        <mat-icon>pie_chart</mat-icon>
-                        <span> Budgets</span>
-                    </button>
-                </mat-list-item>
-                <br>
-                <mat-list-item>
-                    <button mat-button class="menu-button">
-                        <mat-icon>flag</mat-icon>
-                        <span> Saving goals</span>
-                    </button>
-                </mat-list-item>
-                <br>
-                <mat-list-item>
-                    <button mat-button class="menu-button">
-                        <mat-icon>settings</mat-icon>
-                        <span> Categorization rules</span>
-                    </button>
-                </mat-list-item>
-                <br>
-                <mat-list-item>
-                    <img id="sidebarSlika" src="../../assets/zasidebar.PNG">
-                </mat-list-item>
-
-
-
-            </mat-drawer-content>
-        </mat-drawer-container>
-
-    </div>
-    <mat-select id="filter" style="float:right" placeholder="Filter by kind" (selectionChange)="filterKind($event)">
-        <mat-option value="dep">
-            Deposit
-        </mat-option>
-        <mat-option value="fee">
-            Fee
-        </mat-option>
-        <mat-option value="pmt">
-            Payment
-        </mat-option>
-        <mat-option value="wdw">
-            Withdrawal
-        </mat-option>
-        <mat-option value="inc">
-            Interest
-        </mat-option>
-        <mat-option value="rev">
-            Reversal
-        </mat-option>
-        <mat-option value="adj">
-            Adjustment
-        </mat-option>
-        <mat-option value="lnd">
-            Loan disbursement
-        </mat-option>
-        <mat-option value="lnr">
-            Loan repayment
-        </mat-option>
-        <mat-option value="fcx">
-            Foreign currency
-        </mat-option>
-        <mat-option value="aop">
-            Account openning
-        </mat-option>
-        <mat-option value="acl">
-            Account closing
-        </mat-option>
-        <mat-option value="spl">
-            Split payment
-        </mat-option>
-        <mat-option value="sal">
-            Salary
-        </mat-option>
+        <input style="padding-bottom:15px ;" matInput (keyup)="filterKind($event)"
+            placeholder="Ex. Id/Beneficiary Name/Date/Amount" #input>
+    </mat-form-field>
+    <button (click)="openSelect()" class=" btn-primary" mat-stroked-button color="primary"
+        id="btnKategorizuj">Categorize multiple
+        transactions</button>
+    <mat-select style="float:left" placeholder="Filter by kind" (selectionChange)="onChange($event)">
+        <mat-option value="dep">Deposit</mat-option>
+        <mat-option value="fee">Fee</mat-option>
+        <mat-option value="pmt">Payment</mat-option>
+        <mat-option value="wdw">Withdrawal</mat-option>
+        <mat-option value="inc">Interest</mat-option>
+        <mat-option value="rev">Reversal</mat-option>
+        <mat-option value="adj">Adjustment</mat-option>
+        <mat-option value="lnd">Loan disbursement</mat-option>
+        <mat-option value="lnr">Loan repayment</mat-option>
+        <mat-option value="fcx">Foreign currency</mat-option>
+        <mat-option value="aop">Account openning</mat-option>
+        <mat-option value="acl">Account closing</mat-option>
+        <mat-option value="spl">Split payment</mat-option>
+        <mat-option value="sal">Salary</mat-option>
     </mat-select>
+    <div *ngFor="let item of el">
+        <div *ngIf="dugmeOpenClose">
+            <button (click)="kategorijaSvima(); openCategory(item); " class=" btn-primary" mat-stroked-button
+                color="primary"
+                style="border-radius: 3px; background: #00ACE7;  margin-bottom: 10px;margin-left: 550px;   color: white;">Ok</button>
+            <button (click)="closeSelect()" class=" btn-primary" mat-stroked-button color="primary"
+                style="border-radius: 3px; background: grey;  margin-bottom: 10px; margin-left: 250px; color: white;">Cancel</button>
+        </div>
+    </div>
+    <mat-drawer-container class="example-container" style="float: right;">
+        <mat-drawer-content>
+            <mat-list-item id="desniSideIcons">
+                <button mat-button class="menu-button" style=" background-color: #95d7ee;">
+                    <mat-icon>signal_cellular_alt</mat-icon>
+                    <span> Financial Overview</span>
+                </button>
+            </mat-list-item>
+            <br>
+            <mat-list-item>
+                <button mat-button class="menu-button">
+                    <mat-icon>pie_chart</mat-icon>
+                    <span> Budgets</span>
+                </button>
+            </mat-list-item>
+            <br>
+            <mat-list-item>
+                <button mat-button class="menu-button">
+                    <mat-icon>flag</mat-icon>
+                    <span> Saving goals</span>
+                </button>
+            </mat-list-item>
+            <br>
+            <mat-list-item>
+                <button mat-button class="menu-button">
+                    <mat-icon>settings</mat-icon>
+                    <span> Categorization rules</span>
+                </button>
+            </mat-list-item>
+            <br>
+        </mat-drawer-content>
+    </mat-drawer-container>
 </div>
-
-<div class="ceoDiv">
-
-    <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
-        class="mat-elevation-z8">
-        <!-- Position Column -->
-        <ng-container matColumnDef="row1">
-            <th mat-header-cell *matHeaderCellDef>
-            </th>
-            <td mat-cell id="and" *matCellDef="let element">
-                <div>
-            <td *ngIf="element.date == '1/1/2021' && element.beneficiaryName == 'Glovo' ">
-                <img id="avatarSlika"
-                    src="https://static.vecteezy.com/system/resources/previews/004/773/704/non_2x/a-girl-s-face-with-a-beautiful-smile-a-female-avatar-for-a-website-and-social-network-vector.jpg">
-            </td>
-            <td *ngIf="element.date == '1/1/2021' && element.beneficiaryName !== 'Glovo' ">
-                <img id="avatarSlika" src="https://pickaface.net/gallery/avatar/.2108558ad44e8ac1d.png">
-            </td>
-            <td *ngIf="element.date == '1/2/2021' ">
-                <img id="avatarSlika"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1HWDB6J1D4N-80QGiBJ8hgqVq3fFkSkcOTQ&usqp=CAU">
-            </td>
-            <td *ngIf="element.date == '1/3/2021'  ">
-                <img id="avatarSlika"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmBQ52n5dbAw8HmzKX6FbnrmK_3MXSSWJmog&usqp=CAU">
-            </td>
-            <td *ngIf="element.date == '1/4/2021' ">
-                <img id="avatarSlika"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkciBcjwlS6dQ3vgveHUQ8jFtZucua71AVBmDSpl_WaNnLsor7YiGr0nvpwYEZkwQEcpM&usqp=CAU">
-            </td>
-            <td *ngIf="element.date == '1/5/2021'">
-                <img id="avatarSlika"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToqWhac1oPeLGG-ZDv_AaLOZ6al2aiOar4rQ&usqp=CAU">
-            </td>
-
-            <td *ngIf="element.date == '1/6/2021'">
-                <img id="avatarSlika"
-                    src="https://media.istockphoto.com/vectors/male-avatar-icon-or-portrait-handsome-young-man-face-with-beard-vector-id1143511824?k=20&m=1143511824&s=170667a&w=0&h=OjcgBMRpj82IXTItixtv6aIbeP9vny0lCqg0eY6ZONQ=">
-            </td>
-            <td *ngIf="element.date == '1/7/2021'">
-                <img id="avatarSlika"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgbR3FeGIIhaL-k3iDUaKlVGYO2owz8VQDdQ&usqp=CAU">
-            </td>
-</div>
-</td>
-</ng-container>
-<ng-container matColumnDef="row2">
-    <th mat-header-cell *matHeaderCellDef>
-    </th>
-    <td mat-cell id="and" *matCellDef="let element">
-        <div>
-    <td *ngIf="element.direction == 'd' ">
-        <img id="strelice" src="https://cdn1.iconfinder.com/data/icons/basic-ui-elements-coloricon/21/11-512.png">
-    </td>
-    <td *ngIf="element.direction == 'c' ">
-        <img id="strelice" src="https://icones.pro/wp-content/uploads/2021/02/icone-de-fleche-vers-le-bas-rouge.png">
-    </td>
-    </div>
-    </td>
-</ng-container>
-<!-- Name Column -->
-<ng-container matColumnDef="row3">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by beneficiaryName">
-    </th>
-    <td mat-cell id="and1" *matCellDef="let element">
-        <div id="idem">
-    <td id="benName">
-        {{element.beneficiaryName}}
-    </td>
-    <br>
-    <td id="dateName">
-        &nbsp;&nbsp;{{element.date}}
-    </td>
-    </div>
-    </td>
-</ng-container>
-<!-- Weight Column -->
-<ng-container matColumnDef="row4">
-    <th mat-header-cell *matHeaderCellDef>
-    </th>
-    <td mat-cell id="and2" *matCellDef="let element">
-        <div>
-    <td *ngIf="element.catcode == null ">
-        <mat-chip-list>
-            <mat-chip color="primary" (click)="openCategory(element)" id="categ" selected>
-                &nbsp;• Add category + &nbsp;
-            </mat-chip>
-        </mat-chip-list>
-    </td>
-    <td *ngIf="element.catcode != null ">
-        <mat-chip-list>
-            <mat-chip color="primary" (click)="openCategory(element)" id="categ1" selected>
-                &nbsp;• {{element.catcode}}&nbsp;
-            </mat-chip>
-        </mat-chip-list>
-    </td>
-    </div>
-    </td>
-</ng-container>
-<!-- Symbol Column -->
-<ng-container matColumnDef="row5">
-    <th mat-header-cell *matHeaderCellDef>
-    </th>
-    <td mat-cell id="and3" *matCellDef="let element">
-        {{ element.amount}}
-    </td>
-</ng-container>
-<ng-container matColumnDef="row6">
-    <th mat-header-cell *matHeaderCellDef> </th>
-    <td mat-cell *matCellDef="let element">
-        <mat-icon> location_on</mat-icon><br> <button id="btnSplit" class="btn btn-primary">Split
-            tranasction</button>
-    </td>
-
-</ng-container>
-<tr mat-header-row *matHeaderRowDef="displayedColumns">
-</tr>
-<tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
-</tr>
+<table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
+    class="mat-elevation-z8">
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? izaberiSve() : null" [checked]="selection.hasValue() && sveIzabranoCheck()"
+                [indeterminate]="selection.hasValue() && !sveIzabranoCheck()" [aria-label]="checkBoxLabela()">
+            </mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+                [checked]="selection.isSelected(row)" [aria-label]="checkBoxLabela(row)">
+            </mat-checkbox>
+        </td>
+    </ng-container>
+    <!-- Avatar Column -->
+    <ng-container matColumnDef="row1">
+        <th mat-header-cell *matHeaderCellDef>
+        </th>
+        <td mat-cell id="c" *matCellDef="let element">
+            <div>
+        <td *ngIf="element.date == '1/1/2021' && element.beneficiaryName == 'Glovo' ">
+            <img id="avatarSlika"
+                src="https://static.vecteezy.com/system/resources/previews/004/773/704/non_2x/a-girl-s-face-with-a-beautiful-smile-a-female-avatar-for-a-website-and-social-network-vector.jpg">
+        </td>
+        <td *ngIf="element.date == '1/1/2021' && element.beneficiaryName !== 'Glovo' ">
+            <img id="avatarSlika" src="https://pickaface.net/gallery/avatar/.2108558ad44e8ac1d.png">
+        </td>
+        <td *ngIf="element.date == '1/2/2021' ">
+            <img id="avatarSlika"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1HWDB6J1D4N-80QGiBJ8hgqVq3fFkSkcOTQ&usqp=CAU">
+        </td>
+        <td *ngIf="element.date == '1/3/2021'  ">
+            <img id="avatarSlika"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmBQ52n5dbAw8HmzKX6FbnrmK_3MXSSWJmog&usqp=CAU">
+        </td>
+        <td *ngIf="element.date == '1/4/2021' ">
+            <img id="avatarSlika"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkciBcjwlS6dQ3vgveHUQ8jFtZucua71AVBmDSpl_WaNnLsor7YiGr0nvpwYEZkwQEcpM&usqp=CAU">
+        </td>
+        <td *ngIf="element.date == '1/5/2021'">
+            <img id="avatarSlika"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToqWhac1oPeLGG-ZDv_AaLOZ6al2aiOar4rQ&usqp=CAU">
+        </td>
+        <td *ngIf="element.date == '1/6/2021'">
+            <img id="avatarSlika"
+                src="https://media.istockphoto.com/vectors/male-avatar-icon-or-portrait-handsome-young-man-face-with-beard-vector-id1143511824?k=20&m=1143511824&s=170667a&w=0&h=OjcgBMRpj82IXTItixtv6aIbeP9vny0lCqg0eY6ZONQ=">
+        </td>
+        <td *ngIf="element.date == '1/7/2021'">
+            <img id="avatarSlika"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgbR3FeGIIhaL-k3iDUaKlVGYO2owz8VQDdQ&usqp=CAU">
+        </td>
+        </div>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="row2">
+        <th mat-header-cell *matHeaderCellDef>
+        </th>
+        <td mat-cell id="c" *matCellDef="let element">
+            <div>
+        <td *ngIf="element.direction == 'd' ">
+            <img id="strelice" src="https://cdn1.iconfinder.com/data/icons/basic-ui-elements-coloricon/21/11-512.png">
+        </td>
+        <td *ngIf="element.direction == 'c' ">
+            <img id="strelice"
+                src="https://icones.pro/wp-content/uploads/2021/02/icone-de-fleche-vers-le-bas-rouge.png">
+        </td>
+        </div>
+        </td>
+    </ng-container>
+    <!-- BenName Column -->
+    <ng-container matColumnDef="row3">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by beneficiaryName">
+        </th>
+        <td mat-cell *matCellDef="let element">
+            <div id="idem">
+        <td id="benName">
+            {{element.beneficiaryName}}
+        </td>
+        <br>
+        <td id="dateName">
+            &nbsp;&nbsp;{{element.date}}
+        </td>
+        </div>
+        </td>
+    </ng-container>
+    <!-- Category Column -->
+    <ng-container matColumnDef="row4">
+        <th mat-header-cell *matHeaderCellDef>
+        </th>
+        <td mat-cell *matCellDef="let element">
+            <div>
+        <td *ngIf="element.catcode == null ">
+            <mat-chip-list>
+                <mat-chip color="primary" (click)="openCategory(element)" id="categ" selected>
+                    &nbsp;• Add category + &nbsp;
+                </mat-chip>
+            </mat-chip-list>
+        </td>
+        <td *ngIf="element.catcode != null ">
+            <mat-chip-list>
+                <mat-chip color="primary" (click)="openCategory(element)" id="category" selected>
+                    &nbsp;• {{element.catcode}}&nbsp;
+                </mat-chip>
+            </mat-chip-list>
+        </td>
+        </div>
+        </td>
+    </ng-container>
+    <!-- Amount Column -->
+    <ng-container matColumnDef="row5">
+        <th mat-header-cell *matHeaderCellDef>
+        </th>
+        <td mat-cell id="balans" *matCellDef="let element">
+            {{ element.amount}}
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="row6">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let element">
+            <mat-icon> location_on</mat-icon>
+            <br> <button id="btnSplit" mat-stroked-button color="primary">Split
+                tranasction</button>
+        </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
+    </tr>
 </table>
-</div>
-
 <mat-paginator [pageSizeOptions]="[5, 11, 22]" showFirstLastButtons aria-label="Select page of periodic elements">
 </mat-paginator>
