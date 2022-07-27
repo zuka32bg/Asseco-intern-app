@@ -66,10 +66,18 @@ export class PfmService {
   }
 
 
-
-
-
+  splitTransaction(id: any, splited: any) {
+    const data = {
+      splits: []
+    }
+    data.splits = splited
+    console.log(data)
+    return this.httpCli.post(`http://127.0.0.1:4010/transaction/${id}/split`, data);
+  }
 }
+
+
+
 
 
 interface Kategorije {

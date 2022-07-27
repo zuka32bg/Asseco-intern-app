@@ -10,8 +10,7 @@
         <form [formGroup]="form" (ngSubmit)="submit(form)">
             <mat-form-field appearance="fill">
                 <mat-label>Choose category</mat-label>
-                <mat-select name="andr" required [(ngModel)]="selected" formControlName="kategori"
-                    placeholder="Categories">
+                <mat-select required [(ngModel)]="selected" formControlName="kategori" placeholder="Categories">
                     <ng-container *ngFor="let kat of category">
                         <mat-option *ngIf="kat.parentCode==null" value="{{kat.code}}">
                             {{kat.name}}

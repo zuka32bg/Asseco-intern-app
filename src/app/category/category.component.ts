@@ -1,6 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatSelect } from '@angular/material/select';
 import { Category } from '../category';
 import { PfmService } from '../pfm.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
@@ -27,7 +26,7 @@ export class CategoryComponent implements OnInit {
   ngOnInit(): void {
 
     this.transacionService.getCategories().subscribe((categories: Category[]) => {
-      //console.log(categories);
+
       this.category = categories;
     });
 

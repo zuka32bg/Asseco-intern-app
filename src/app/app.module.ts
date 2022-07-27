@@ -28,6 +28,9 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CategoryComponent } from './category/category.component';
+import { NgChartsModule } from 'ng2-charts'
+import { ChartComponent } from './chart/chart.component';
+
 
 
 
@@ -41,6 +44,10 @@ import { CategoryComponent } from './category/category.component';
     HomeComponent,
     PfmComponent,
     CategoryComponent,
+    ChartComponent,
+
+
+
 
   ],
   imports: [
@@ -67,7 +74,9 @@ import { CategoryComponent } from './category/category.component';
     ReactiveFormsModule,
     MatSortModule,
     MatCheckboxModule,
+    NgChartsModule,
     MatDialogModule,
+
 
 
 
