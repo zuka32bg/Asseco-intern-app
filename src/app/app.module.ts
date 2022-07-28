@@ -38,6 +38,8 @@ import { ChartComponent } from './chart/chart.component';
 
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +51,9 @@ import { ChartComponent } from './chart/chart.component';
 
 
 
+
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,

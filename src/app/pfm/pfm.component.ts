@@ -10,6 +10,7 @@ import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dial
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { SelectionModel } from '@angular/cdk/collections';
 import { CategoryComponent } from '../category/category.component';
+import { ChartComponent } from '../chart/chart.component';
 
 
 
@@ -62,6 +63,10 @@ export class PfmComponent implements AfterViewInit, OnInit {
 
 
 
+  openPieChart() {
+    this.dialog.open(ChartComponent);
+
+  }
 
 
   openCategory(element: Pfm) {
