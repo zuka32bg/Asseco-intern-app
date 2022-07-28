@@ -11,6 +11,7 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { SelectionModel } from '@angular/cdk/collections';
 import { CategoryComponent } from '../category/category.component';
 import { ChartComponent } from '../chart/chart.component';
+import { SplitTransakcijeComponent } from '../split-transakcije/split-transakcije.component';
 
 
 
@@ -110,8 +111,9 @@ export class PfmComponent implements AfterViewInit, OnInit {
     })
   }
 
-
-
+  splitTransactions() {
+    this.dialog.open(SplitTransakcijeComponent);
+  }
 
 
   displayedColumns: string[] = ['row1', 'row2', 'row3', 'row4', 'row5', 'row6'];

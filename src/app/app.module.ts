@@ -31,6 +31,8 @@ import { CategoryComponent } from './category/category.component';
 import { NgChartsModule } from 'ng2-charts'
 import { ChartComponent } from './chart/chart.component';
 
+import { SplitTransakcijeComponent } from './split-transakcije/split-transakcije.component';
+
 
 
 
@@ -47,6 +49,7 @@ import { ChartComponent } from './chart/chart.component';
     PfmComponent,
     CategoryComponent,
     ChartComponent,
+    SplitTransakcijeComponent,
 
 
 
